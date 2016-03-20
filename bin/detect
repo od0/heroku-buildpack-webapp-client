@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-if [ -f $1/client/grunt.js ] || [ -f $1/client/Gruntfile.js ] || [ -f $1/client/Gruntfile.coffee ]; then
+if [ -f $1/client/gulpfile.js ]; then
   echo "Found web application in client directory" && exit 0
 fi

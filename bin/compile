@@ -65,8 +65,8 @@ fi
 
 # Add grunt and bower dependecies to package.json to cache them
 status "Augmenting package.json with grunt and grunt-cli"
-$bp_dir/bin/devdeps.py $build_dir/package.json "grunt" "~0.4.5"
-$bp_dir/bin/devdeps.py $build_dir/package.json "grunt-cli" "~0.1.13"
+#$bp_dir/bin/devdeps.py $build_dir/package.json "grunt" "~0.4.5"
+#$bp_dir/bin/devdeps.py $build_dir/package.json "grunt-cli" "~0.1.13"
 
 if [ -e $build_dir/bower.json ]; then
   status "Augmenting package.json with bower"
@@ -232,7 +232,7 @@ fi
 
 # Run grunt
 status "Running grunt build task"
-$build_dir/node_modules/.bin/grunt build 2>&1 | indent
+$build_dir/node_modules/.bin/gulp build:dev 2>&1 | indent
 
 # Update the PATH
 status "Building runtime environment"
