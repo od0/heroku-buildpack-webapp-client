@@ -234,7 +234,9 @@ fi
 status "Running gulp build task"
 $build_dir/node_modules/.bin/gulp build:dev 2>&1 | indent
 
-touch $dist_dir/static/site/default.png
+
+status "Trying to touch default.png at $build_dir/build/static/site/default.png"
+touch $build_dir/build/static/site/default.png
 
 # Update the PATH
 status "Building runtime environment"
