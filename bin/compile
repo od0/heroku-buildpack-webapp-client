@@ -232,7 +232,7 @@ fi
 
 # Run grunt
 status "Running gulp build task"
-$build_dir/node_modules/.bin/gulp build:dev 2>&1 | indent
+$build_dir/node_modules/.bin/gulp build:$GULP_ENV 2>&1 | indent
 
 
 status "Trying to touch default.png at $build_dir/build/static/site/default.png"
