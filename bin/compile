@@ -175,28 +175,28 @@ rm -rf "$build_dir/.node-gyp"
 rm -rf "$build_dir/.npm"
 
 # Install compass
-status "Installing Compass"
-RUBY_VERSION=$(ruby -e "require 'rbconfig';puts \"#{RUBY_ENGINE}/#{RbConfig::CONFIG['ruby_version']}\"")
-export GEM_HOME=$build_dir/.gem/$RUBY_VERSION
-PATH="$GEM_HOME/bin:$PATH"
-# Test if gem home exists and matches current ruby version
-if test -d $cache_dir/ruby/.gem/$RUBY_VERSION; then
-  status "Restoring ruby gems directory from cache"
-  cp -r $cache_dir/ruby/.gem $build_dir
-  HOME=$build_dir gem update compass --user-install --no-rdoc --no-ri 2>&1 | indent
+# status "Installing Compass"
+# RUBY_VERSION=$(ruby -e "require 'rbconfig';puts \"#{RUBY_ENGINE}/#{RbConfig::CONFIG['ruby_version']}\"")
+# export GEM_HOME=$build_dir/.gem/$RUBY_VERSION
+# PATH="$GEM_HOME/bin:$PATH"
+# # Test if gem home exists and matches current ruby version
+# if test -d $cache_dir/ruby/.gem/$RUBY_VERSION; then
+#   status "Restoring ruby gems directory from cache"
+#   cp -r $cache_dir/ruby/.gem $build_dir
+#   HOME=$build_dir gem update compass --user-install --no-rdoc --no-ri 2>&1 | indent
 
-  # Try to run compass - reinstall if it fails
-  if compass -v >/dev/null 2>&1; then
-    status "Compass ok"
-  else
-    status "Reinstalling compass"
-    HOME=$build_dir gem uninstall compass --user-install 2>&1 | indent
-    HOME=$build_dir gem install compass --user-install --no-rdoc --no-ri 2>&1 | indent
-  fi
+#   # Try to run compass - reinstall if it fails
+#   if compass -v >/dev/null 2>&1; then
+#     status "Compass ok"
+#   else
+#     status "Reinstalling compass"
+#     HOME=$build_dir gem uninstall compass --user-install 2>&1 | indent
+#     HOME=$build_dir gem install compass --user-install --no-rdoc --no-ri 2>&1 | indent
+#   fi
 
-else
-  HOME=$build_dir gem install compass --user-install --no-rdoc --no-ri 2>&1 | indent
-fi
+# else
+#   HOME=$build_dir gem install compass --user-install --no-rdoc --no-ri 2>&1 | indent
+# fi
 
 # Cache ruby gems
 rm -rf $cache_dir/ruby
@@ -231,8 +231,10 @@ if [ -e $build_dir/bower.json ]; then
 fi
 
 # Run grunt
-status "Running grunt build task"
+status "Running gulp build task"
 $build_dir/node_modules/.bin/gulp build:dev 2>&1 | indent
+
+touch $dist_dir/static/site/default.png
 
 # Update the PATH
 status "Building runtime environment"
