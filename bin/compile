@@ -232,7 +232,17 @@ fi
 
 # Run grunt
 status "Running gulp build task"
-$build_dir/node_modules/.bin/gulp build:$GULP_ENV 2>&1 | indent
+(
+  if [ -d "$env_dir" ]; then
+    status "Exporting config vars to environment"
+    export_env_dir $env_dir
+  fi
+
+  status "Running gulp"
+  # Make npm output to STDOUT instead of its default STDERR
+  $build_dir/node_modules/.bin/gulp build:$GULP_ENV 2>&1 | indent
+)
+
 
 
 status "Trying to touch default.png at $build_dir/build/static/site/default.png"
