@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-echo $1
+git submodule update --init --recursive
 
 if [ -f $1/client/gulpfile.js ]; then
   echo "Found web application in client directory" && exit 0
