@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-if [ -f $1/client/gulpfile.js ]; then
-  echo "Found web application in client directory" && exit 0
-fi
+echo "Found web application in client directory" && exit 0
