@@ -2,9 +2,7 @@
 # bin/detect <build-dir>
 
 cd $1
-ls
-cd client
-ls
+ls -R
 git submodule update --init --recursive
 
 if [ -f $1/client/gulpfile.js ]; then
