@@ -2,6 +2,7 @@
 # bin/detect <build-dir>
 
 cd $1
+ls
 cd client
 ls
 git submodule update --init --recursive
