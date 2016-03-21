@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-cd $1/client
+cd $1
+cd client
 ls
 git submodule update --init --recursive
 
